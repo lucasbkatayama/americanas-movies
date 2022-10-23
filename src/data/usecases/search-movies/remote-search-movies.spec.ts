@@ -1,12 +1,13 @@
 import { HttpGetClientSpy } from '@/data/test/mock-http-client'
 import { RemoteSearchMovies } from './remote-search-movies'
+import { faker } from '@faker-js/faker'
 
 type SutTypes = {
   sut: RemoteSearchMovies
   httpGetClientSpy: HttpGetClientSpy
 }
 
-const makeSut = (url: string = 'any_url'): SutTypes => {
+const makeSut = (url: string = faker.internet.url()): SutTypes => {
   const httpGetClientSpy = new HttpGetClientSpy()
   const sut = new RemoteSearchMovies(url, httpGetClientSpy)
   return {
