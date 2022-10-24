@@ -1,3 +1,8 @@
+export type HttpGetParams = {
+  url: string
+  params?: object
+}
+
 export interface HttpGetClient {
-  get: (url: string) => Promise<void>
+  get: (params: HttpGetParams) => Promise<void>
 }
