@@ -1,5 +1,5 @@
 import { Search } from '@/presentation/pages'
-import { SearchMoviesSpy } from '@/presentation/pages/search/search.spec'
+import { SearchMoviesSpy } from '@/presentation/test/mock-search-movies'
 import { ValidationSpy } from '@/presentation/test/mock-validation'
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'

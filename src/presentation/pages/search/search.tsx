@@ -29,6 +29,7 @@ const Search: React.FC<Props> = (props: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
+    if (isLoading) return
     setIsLoading(true)
     await searchMovies.search({ s: search })
   }
