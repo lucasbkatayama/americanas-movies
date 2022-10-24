@@ -1,7 +1,7 @@
 import { AxiosAdapter } from './axios-adapter'
-import axios from 'axios'
-import { faker } from '@faker-js/faker'
 import { HttpGetParams } from '@/data/protocols/http'
+import { faker } from '@faker-js/faker'
+import axios from 'axios'
 
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
