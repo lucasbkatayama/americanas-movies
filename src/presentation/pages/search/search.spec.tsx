@@ -37,4 +37,13 @@ describe('Search Component', () => {
     expect(validationSpy.fieldName).toBe('search')
     expect(validationSpy.fieldValue).toBe(search)
   })
+
+  test('Should enable button if form is valid', () => {
+    const { sut, validationSpy } = makeSut()
+    validationSpy.isCorrect = true
+    const searchInput = sut.getByTestId('search')
+    fireEvent.input(searchInput, { target: { value: 'any_text' } })
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    expect(submitButton.disabled).toBe(false)
+  })
 })
