@@ -3,16 +3,18 @@ import { HttpGetClientSpy } from '@/data/test/mock-http-client'
 import { mockSearchMovies } from '@/domain/test/mock-search-movies'
 import { HttpStatusCode } from '@/data/protocols/http/http-response'
 import { InvalidCredentialsError } from '@/domain/errors/invalid-credentials-error'
-import { faker } from '@faker-js/faker'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
+import { SearchMoviesParams } from '@/domain/usecases/search-movies'
+import { TinyMovieModel } from '@/domain/models/tiny-movie-model'
+import { faker } from '@faker-js/faker'
 
 type SutTypes = {
   sut: RemoteSearchMovies
-  httpGetClientSpy: HttpGetClientSpy
+  httpGetClientSpy: HttpGetClientSpy<SearchMoviesParams, TinyMovieModel>
 }
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
-  const httpGetClientSpy = new HttpGetClientSpy()
+  const httpGetClientSpy = new HttpGetClientSpy<SearchMoviesParams, TinyMovieModel>()
   const sut = new RemoteSearchMovies(url, httpGetClientSpy)
   return {
     sut,
