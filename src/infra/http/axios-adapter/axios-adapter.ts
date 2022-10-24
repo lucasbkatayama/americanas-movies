@@ -3,6 +3,6 @@ import axios from 'axios'
 
 export class AxiosAdapter {
   async get (params: HttpGetParams<any>): Promise<void> {
-    await axios.get(params.url)
+    await axios.get(params.url, params.params)
   }
 }
