@@ -1,0 +1,90 @@
+@import "../../styles/colors.scss";
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background;
+  color: $primary;
+}
+
+input[type="search"] {
+  border: 1px solid $primaryLight;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: transparent;
+  padding-left: 10px;
+  color: $primaryLight;
+
+  &:focus {
+    outline-color: $primaryLight;
+  }
+}
+
+button {
+  background-color: $primary;
+  color: $black;
+  border-radius: 50px;
+  line-height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 16px;
+  border: none;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  position: relative;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 84px;
+    background-image: $gradientTopBottom;
+    padding-bottom: 20px;
+  }
+
+  .form {
+    position: absolute; 
+    display: flex;
+    left: 0; 
+    right: 0;
+    top: 45%;
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 300px;
+  }
+
+  .footer {
+    background-image: $gradientBottomTop;
+    height: 84px;
+  }
+
+  .inputWrap {
+    margin-right: 10px;
+  }
+
+  .errorWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error {
+    color: $error;
+    font-weight: bold;
+  }
+}

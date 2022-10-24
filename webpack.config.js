@@ -18,8 +18,15 @@ module.exports = {
   module: {
     rules: [{
       test: /\.ts(x?)$/,
-      loader: 'ts-loader',
-      exclude: /node_modules/
+      exclude: /node_modules/,
+      use: [{
+        loader: 'ts-loader',
+        options: {
+          compilerOptions: {
+            noEmit: false
+          }
+        }
+      }]
     }, {
       test: /\.scss$/,
       use: [{
@@ -27,7 +34,7 @@ module.exports = {
       }, {
         loader: 'css-loader',
         options: {
-          module: true
+          modules: true
         }
       }, {
         loader: 'sass-loader'
@@ -36,9 +43,13 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: './public',
-    writeToDisk: true,
-    historyApiFallback: true
+    static: {
+      directory: path.join(__dirname, './public')
+    },
+    historyApiFallback: true,
+    devMiddleware: {
+      writeToDisk: true
+    }
   },
   externals: {
     react: 'React',
