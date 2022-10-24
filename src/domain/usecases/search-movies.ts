@@ -1,4 +1,4 @@
-import { TinyMovieModel } from '../models/tiny-movie-model'
+import { TinyMovieModel } from '../models'
 
 export type SearchMoviesParams = {
   s: string

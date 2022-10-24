@@ -1,11 +1,10 @@
 import { RemoteSearchMovies } from './remote-search-movies'
-import { HttpGetClientSpy } from '@/data/test/mock-http-client'
-import { HttpStatusCode } from '@/data/protocols/http/http-response'
-import { InvalidCredentialsError } from '@/domain/errors/invalid-credentials-error'
-import { UnexpectedError } from '@/domain/errors/unexpected-error'
-import { SearchMoviesParams } from '@/domain/usecases/search-movies'
-import { TinyMovieModel } from '@/domain/models/tiny-movie-model'
-import { mockSearchMovies, mockTinyMovieModel } from '@/domain/test/mock-movies'
+import { HttpGetClientSpy } from '@/data/test'
+import { HttpStatusCode } from '@/data/protocols/http'
+import { InvalidCredentialsError, UnexpectedError } from '@/domain/errors'
+import { SearchMoviesParams } from '@/domain/usecases'
+import { TinyMovieModel } from '@/domain/models'
+import { mockSearchMovies, mockTinyMovieModel } from '@/domain/test'
 import { faker } from '@faker-js/faker'
 
 type SutTypes = {

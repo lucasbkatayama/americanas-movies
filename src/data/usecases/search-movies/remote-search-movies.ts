@@ -1,9 +1,7 @@
-import { HttpGetClient } from '@/data/protocols/http/http-get-client'
-import { HttpStatusCode } from '@/data/protocols/http/http-response'
-import { InvalidCredentialsError } from '@/domain/errors/invalid-credentials-error'
-import { UnexpectedError } from '@/domain/errors/unexpected-error'
-import { TinyMovieModel } from '@/domain/models/tiny-movie-model'
-import { SearchMovies, SearchMoviesParams } from '@/domain/usecases/search-movies'
+import { HttpGetClient, HttpStatusCode } from '@/data/protocols/http'
+import { UnexpectedError, InvalidCredentialsError } from '@/domain/errors'
+import { SearchMovies, SearchMoviesParams } from '@/domain/usecases'
+import { TinyMovieModel } from '@/domain/models'
 
 export class RemoteSearchMovies implements SearchMovies {
   constructor (
