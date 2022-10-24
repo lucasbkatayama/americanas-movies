@@ -25,11 +25,16 @@ const Search: React.FC<Props> = (props: Props) => {
     setSearch(event.target.value)
   }
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    setIsLoading(true)
+  }
+
   return (
     <div className={Styles.login}>
       <Header />
       <Context.Provider value={result}>
-        <form className={Styles.form}>
+        <form className={Styles.form} onSubmit={handleSubmit}>
           <div className={Styles.inputWrap}>
             <input data-testid='search' type="search" name="search" placeholder="Procure seu Filme" onChange={handleChange} />
           </div>

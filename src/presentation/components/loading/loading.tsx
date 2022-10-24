@@ -3,7 +3,7 @@ import Styles from './loading-styles.scss'
 
 const Loading: React.FC = () => {
   return (
-    <div className={Styles.loading}>
+    <div data-testid='loading' className={Styles.loading}>
       <div />
       <div />
     </div>
