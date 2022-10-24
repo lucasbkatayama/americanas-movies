@@ -1,20 +1,20 @@
 import { RemoteSearchMovies } from './remote-search-movies'
 import { HttpGetClientSpy } from '@/data/test/mock-http-client'
-import { mockSearchMovies } from '@/domain/test/mock-search-movies'
 import { HttpStatusCode } from '@/data/protocols/http/http-response'
 import { InvalidCredentialsError } from '@/domain/errors/invalid-credentials-error'
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { SearchMoviesParams } from '@/domain/usecases/search-movies'
 import { TinyMovieModel } from '@/domain/models/tiny-movie-model'
+import { mockSearchMovies, mockTinyMovieModel } from '@/domain/test/mock-movies'
 import { faker } from '@faker-js/faker'
 
 type SutTypes = {
   sut: RemoteSearchMovies
-  httpGetClientSpy: HttpGetClientSpy<SearchMoviesParams, TinyMovieModel>
+  httpGetClientSpy: HttpGetClientSpy<SearchMoviesParams, TinyMovieModel[]>
 }
 
 const makeSut = (url: string = faker.internet.url()): SutTypes => {
-  const httpGetClientSpy = new HttpGetClientSpy<SearchMoviesParams, TinyMovieModel>()
+  const httpGetClientSpy = new HttpGetClientSpy<SearchMoviesParams, TinyMovieModel[]>()
   const sut = new RemoteSearchMovies(url, httpGetClientSpy)
   return {
     sut,
@@ -71,5 +71,16 @@ describe('RemoteSearchMovies', () => {
     }
     const promise = sut.search(mockSearchMovies())
     await expect(promise).rejects.toThrow(new UnexpectedError())
+  })
+
+  test('Should return an array of TinyMoviesModel if HttpGetClient returns 200', async () => {
+    const { sut, httpGetClientSpy } = makeSut()
+    const httpResult = mockTinyMovieModel()
+    httpGetClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      body: httpResult
+    }
+    const movies = await sut.search(mockSearchMovies())
+    expect(movies).toEqual(httpResult)
   })
 })
