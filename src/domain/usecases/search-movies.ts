@@ -5,5 +5,5 @@ export type SearchMoviesParams = {
 }
 
 export interface SearchMovies {
-  search: (value: SearchMoviesParams) => Promise<TinyMovieModel>
+  search: (value: SearchMoviesParams) => Promise<TinyMovieModel[]>
 }
