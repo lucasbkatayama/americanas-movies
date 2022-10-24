@@ -1,14 +1,13 @@
 import React from 'react'
 import Styles from './search-styles.scss'
-import Loading from '../../components/loading/loading'
-import Logo from '@/presentation/components/logo/logo'
+import Loading from '@/presentation/components/loading/loading'
+import Header from '@/presentation/components/header/header'
+import Footer from '@/presentation/components/footer/footer'
 
 const Search: React.FC = () => {
   return (
     <div className={Styles.login}>
-      <header className={Styles.header}>
-        <Logo />
-      </header>
+      <Header />
       <form className={Styles.form}>
         <div className={Styles.inputWrap}>
           <input type="search" name="search" placeholder="Procure seu Filme" />
@@ -19,9 +18,7 @@ const Search: React.FC = () => {
         <span className={Styles.error}>Erro</span>
         <Loading />
       </div>
-      <footer className={Styles.footer}>
-
-      </footer>
+      <Footer />
     </div>
   )
 }

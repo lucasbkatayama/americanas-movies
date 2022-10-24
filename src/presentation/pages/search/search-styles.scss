@@ -48,15 +48,6 @@ button {
   justify-content: space-between;
   position: relative;
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 84px;
-    background-image: $gradientTopBottom;
-    padding-bottom: 20px;
-  }
-
   .form {
     position: absolute; 
     display: flex;
@@ -66,11 +57,6 @@ button {
     margin-left: auto; 
     margin-right: auto; 
     width: 300px;
-  }
-
-  .footer {
-    background-image: $gradientBottomTop;
-    height: 84px;
   }
 
   .inputWrap {
