@@ -12,13 +12,13 @@ export const mockTinyMovieModel = (): TinyMovieModel[] => ([
     year: faker.random.numeric(4),
     id: faker.database.mongodbObjectId(),
     type: faker.random.word(),
-    poster: faker.internet.url()
+    poster: faker.image.cats()
   },
   {
     title: faker.random.word(),
     year: faker.random.numeric(4),
     id: faker.database.mongodbObjectId(),
     type: faker.random.word(),
-    poster: faker.internet.url()
+    poster: faker.image.cats()
   }
 ])
