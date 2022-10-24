@@ -62,15 +62,4 @@ button {
   .inputWrap {
     margin-right: 10px;
   }
-
-  .errorWrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .error {
-    color: $error;
-    font-weight: bold;
-  }
 }

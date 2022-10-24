@@ -1,8 +1,8 @@
 import React from 'react'
 import Styles from './search-styles.scss'
-import Loading from '@/presentation/components/loading/loading'
 import Header from '@/presentation/components/header/header'
 import Footer from '@/presentation/components/footer/footer'
+import Status from '@/presentation/components/status/status'
 
 const Search: React.FC = () => {
   return (
@@ -14,10 +14,7 @@ const Search: React.FC = () => {
         </div>
         <button type="submit">Buscar</button>
       </form>
-      <div className={Styles.errorWrap}>
-        <span className={Styles.error}>Erro</span>
-        <Loading />
-      </div>
+      <Status />
       <Footer />
     </div>
   )
