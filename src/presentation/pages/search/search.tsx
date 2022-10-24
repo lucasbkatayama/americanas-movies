@@ -13,11 +13,12 @@ const Search: React.FC<Props> = (props: Props) => {
   const { validation } = props
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const [isCorrect, setIsCorrect] = useState<boolean>(false)
   const [result, setResult] = useState<TinyMovieModel[]>([])
   const [search, setSearch] = useState<string>('')
 
   useEffect(() => {
-    validation.validate('search', search)
+    setIsCorrect(validation.validate('search', search))
   }, [search])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -32,7 +33,7 @@ const Search: React.FC<Props> = (props: Props) => {
           <div className={Styles.inputWrap}>
             <input data-testid='search' type="search" name="search" placeholder="Procure seu Filme" onChange={handleChange} />
           </div>
-          <button data-testid='submit' disabled type="submit">Buscar</button>
+          <button data-testid='submit' disabled={!isCorrect} type="submit">Buscar</button>
         </form>
       </Context.Provider>
       <Status isLoading={isLoading} errorMessage={errorMessage} />
