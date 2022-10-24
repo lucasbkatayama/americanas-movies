@@ -5,7 +5,7 @@ export class HttpGetClientSpy implements HttpGetClient {
   url?: string
   params?: object
   response: HttpResponse = {
-    statusCode: HttpStatusCode.noContent
+    statusCode: HttpStatusCode.ok
   }
 
   async get (params: HttpGetParams): Promise<HttpResponse> {
