@@ -16,10 +16,10 @@ const mockGetRequest = (): HttpGetParams<any> => ({
 })
 
 describe('AxiosAdapter', () => {
-  test('Should call axios with correct URL and verb', async () => {
+  test('Should call axios with correct values', async () => {
     const request = mockGetRequest()
     const sut = makeSut()
     await sut.get(request)
-    expect(mockedAxios.get).toHaveBeenCalledWith(request.url)
+    expect(mockedAxios.get).toHaveBeenCalledWith(request.url, request.params)
   })
 })
