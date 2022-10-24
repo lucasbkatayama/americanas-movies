@@ -1,24 +1,40 @@
 import React from 'react'
-import { render, RenderResult } from '@testing-library/react'
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
 import Search from './search'
+import { ValidationSpy } from '@/presentation/test/mock-validation'
+import { faker } from '@faker-js/faker'
 
 type SutTypes = {
   sut: RenderResult
+  validationSpy: ValidationSpy
 }
 
 const makeSut = (): SutTypes => {
-  const sut = render(<Search />)
+  const validationSpy = new ValidationSpy()
+  const sut = render(<Search validation={validationSpy} />)
   return {
-    sut
+    sut,
+    validationSpy
   }
 }
 
 describe('Search Component', () => {
+  afterEach(cleanup)
+
   test('Should start with initial state', () => {
     const { sut } = makeSut()
     const errorWrap = sut.getByTestId('error-wrap')
     expect(errorWrap.childElementCount).toBe(0)
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement
     expect(submitButton.disabled).toBe(true)
+  })
+
+  test('Should call Validation with correct value', () => {
+    const { sut, validationSpy } = makeSut()
+    const searchInput = sut.getByTestId('search')
+    const search = faker.random.word()
+    fireEvent.input(searchInput, { target: { value: search } })
+    expect(validationSpy.fieldName).toBe('search')
+    expect(validationSpy.fieldValue).toBe(search)
   })
 })
