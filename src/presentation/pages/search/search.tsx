@@ -17,7 +17,7 @@ const Search: React.FC = () => {
           <div className={Styles.inputWrap}>
             <input type="search" name="search" placeholder="Procure seu Filme" />
           </div>
-          <button type="submit">Buscar</button>
+          <button data-testid='submit' disabled type="submit">Buscar</button>
         </form>
       </Context.Provider>
       <Status isLoading={isLoading} errorMessage={errorMessage} />
