@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Search } from '@/presentation/pages'
+import { Router } from '@/presentation/components'
 
 ReactDOM.render(
-  <Search />,
+  <Router />,
   document.getElementById('main')
 )
