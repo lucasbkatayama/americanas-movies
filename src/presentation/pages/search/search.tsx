@@ -4,13 +4,15 @@ import { Header, Footer, Status } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
 import { TinyMovieModel } from '@/domain/models'
 import { Validation } from '@/presentation/protocols/validation'
+import { SearchMovies } from '@/domain/usecases'
 
 type Props = {
   validation: Validation
+  searchMovies: SearchMovies
 }
 
 const Search: React.FC<Props> = (props: Props) => {
-  const { validation } = props
+  const { validation, searchMovies } = props
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [isCorrect, setIsCorrect] = useState<boolean>(false)
@@ -25,9 +27,10 @@ const Search: React.FC<Props> = (props: Props) => {
     setSearch(event.target.value)
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     setIsLoading(true)
+    await searchMovies.search({ s: search })
   }
 
   return (
