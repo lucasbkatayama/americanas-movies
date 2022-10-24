@@ -1,8 +1,6 @@
 import React from 'react'
 import Styles from './search-styles.scss'
-import Header from '@/presentation/components/header/header'
-import Footer from '@/presentation/components/footer/footer'
-import Status from '@/presentation/components/status/status'
+import { Header, Footer, Status } from '@/presentation/components'
 
 const Search: React.FC = () => {
   return (

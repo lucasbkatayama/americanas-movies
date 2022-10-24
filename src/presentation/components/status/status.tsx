@@ -1,6 +1,6 @@
 import React from 'react'
 import Styles from './status-styles.scss'
-import Loading from '@/presentation/components/loading/loading'
+import { Loading } from '@/presentation/components'
 
 type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
