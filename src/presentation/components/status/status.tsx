@@ -2,13 +2,18 @@ import React from 'react'
 import Styles from './status-styles.scss'
 import { Loading } from '@/presentation/components'
 
-type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+type Props = {
+  isLoading: boolean
+  errorMessage: string
+}
 
-const Status: React.FC = (props: Props) => {
+const Status: React.FC<Props> = (props: Props) => {
+  const { isLoading, errorMessage } = props
+
   return (
-    <div className={Styles.errorWrap}>
-      <span className={Styles.error}>Erro</span>
-      <Loading />
+    <div data-testid="error-wrap" className={Styles.errorWrap}>
+      {errorMessage && <span className={Styles.error}>{errorMessage}</span>}
+      {isLoading && <Loading />}
     </div>
   )
 }
