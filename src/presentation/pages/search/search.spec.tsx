@@ -46,4 +46,15 @@ describe('Search Component', () => {
     const submitButton = sut.getByTestId('submit') as HTMLButtonElement
     expect(submitButton.disabled).toBe(false)
   })
+
+  test('Should show loading on submit', () => {
+    const { sut, validationSpy } = makeSut()
+    validationSpy.isCorrect = true
+    const searchInput = sut.getByTestId('search')
+    fireEvent.input(searchInput, { target: { value: 'any_text' } })
+    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
+    fireEvent.click(submitButton)
+    const loading = sut.getByTestId('loading')
+    expect(loading).toBeTruthy()
+  })
 })
