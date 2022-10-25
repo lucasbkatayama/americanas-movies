@@ -12,7 +12,7 @@ const Status: React.FC<Props> = (props: Props) => {
 
   return (
     <div data-testid="error-wrap" className={Styles.errorWrap}>
-      {errorMessage && <span className={Styles.error}>{errorMessage}</span>}
+      {errorMessage && <span data-testid="main-error" className={Styles.error}>{errorMessage}</span>}
       {isLoading && <Loading />}
     </div>
   )
