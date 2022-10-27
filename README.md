@@ -15,5 +15,13 @@ npm install
 npm run start
 ```
 
+## Testes
+
+Script para executar os testes do sistema.
+
+```bash
+npm run test
+```
+
 ## Considerações
 Não está completo e está em desenvolvimento.
