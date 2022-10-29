@@ -1,10 +1,5 @@
-import { SearchMoviesParams } from '../usecases/search-movies'
 import { TinyMovieModel } from '../models'
 import { faker } from '@faker-js/faker'
-
-export const mockSearchMovies = (): SearchMoviesParams => ({
-  s: faker.random.word()
-})
 
 export const mockTinyMovieModel = (): TinyMovieModel[] => ([
   {

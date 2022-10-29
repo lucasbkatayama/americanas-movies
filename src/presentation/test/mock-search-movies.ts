@@ -1,15 +1,20 @@
-import { TinyMovieModel } from '@/domain/models'
+import { RemoteSearchMoviesParams } from '@/data/usecases/search-movies/remote-search-movies'
 import { mockTinyMovieModel } from '@/domain/test'
-import { SearchMovies, SearchMoviesParams } from '@/domain/usecases'
+import { SearchMovies, SearchMoviesResponse } from '@/domain/usecases'
 
 export class SearchMoviesSpy implements SearchMovies {
-  movies = mockTinyMovieModel()
-  params: SearchMoviesParams
-  callsCount = 0
+  response = {
+    Response: 'True',
+    Search: mockTinyMovieModel(),
+    totalResults: '10'
+  }
 
-  async search (params: SearchMoviesParams): Promise<TinyMovieModel[]> {
-    this.params = params
+  callsCount = 0
+  params: RemoteSearchMoviesParams
+
+  async search (value: string): Promise<SearchMoviesResponse> {
+    this.params = { s: value }
     this.callsCount++
-    return await Promise.resolve(this.movies)
+    return await Promise.resolve(this.response)
   }
 }

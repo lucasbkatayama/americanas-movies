@@ -1,22 +1,28 @@
 import { HttpGetClient, HttpStatusCode } from '@/data/protocols/http'
-import { UnexpectedError, InvalidCredentialsError } from '@/domain/errors'
-import { SearchMovies, SearchMoviesParams } from '@/domain/usecases'
-import { TinyMovieModel } from '@/domain/models'
+import { UnexpectedError, InvalidCredentialsError, NotFoundError } from '@/domain/errors'
+import { SearchMovies, SearchMoviesResponse } from '@/domain/usecases'
+
+export type RemoteSearchMoviesParams = {
+  s: string
+}
 
 export class RemoteSearchMovies implements SearchMovies {
   constructor (
     private readonly url: string,
-    private readonly httpGetClient: HttpGetClient<SearchMoviesParams, TinyMovieModel[]>
+    private readonly httpGetClient: HttpGetClient<RemoteSearchMoviesParams, any>
   ) {}
 
-  async search (params: SearchMoviesParams): Promise<TinyMovieModel[]> {
+  async search (value: string): Promise<SearchMoviesResponse> {
     const httpResponse = await this.httpGetClient.get({
       url: this.url,
-      params
+      params: { s: value }
     })
 
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok: return httpResponse.body
+      case HttpStatusCode.ok: {
+        if (httpResponse.body.Response === 'False') throw new NotFoundError()
+        return httpResponse.body
+      }
       case HttpStatusCode.unauthorized: throw new InvalidCredentialsError()
       default: throw new UnexpectedError()
     }

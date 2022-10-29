@@ -17,14 +17,14 @@ const Search: React.FC<Props> = (props: Props) => {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [isCorrect, setIsCorrect] = useState<boolean>(false)
   const [result, setResult] = useState<TinyMovieModel[]>([])
-  const [search, setSearch] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('')
 
   useEffect(() => {
-    setIsCorrect(validation.validate('search', search))
-  }, [search])
+    setIsCorrect(validation.validate('search', searchValue))
+  }, [searchValue])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearch(event.target.value)
+    setSearchValue(event.target.value)
   }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -32,7 +32,7 @@ const Search: React.FC<Props> = (props: Props) => {
     try {
       if (isLoading) return
       setIsLoading(true)
-      await searchMovies.search({ s: search })
+      await searchMovies.search(searchValue)
     } catch (error) {
       setIsLoading(false)
       setErrorMessage(error.message)
