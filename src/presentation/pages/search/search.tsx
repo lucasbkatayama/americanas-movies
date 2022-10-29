@@ -20,7 +20,7 @@ const Search: React.FC<Props> = (props: Props) => {
   const [searchValue, setSearchValue] = useState<string>('')
 
   useEffect(() => {
-    setIsCorrect(validation.validate('search', searchValue))
+    setIsCorrect(validation.validate(searchValue))
   }, [searchValue])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

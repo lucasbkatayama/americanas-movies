@@ -38,7 +38,6 @@ describe('Search Component', () => {
     const searchInput = sut.getByTestId('search')
     const search = faker.random.word()
     fireEvent.input(searchInput, { target: { value: search } })
-    expect(validationSpy.fieldName).toBe('search')
     expect(validationSpy.fieldValue).toBe(search)
   })
 

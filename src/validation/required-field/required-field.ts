@@ -1,8 +1,6 @@
-import { FieldValidation } from '@/validation/protocols/field-validation'
+import { Validation } from '@/presentation/protocols/validation'
 
-export class RequiredFieldValidation implements FieldValidation {
-  constructor (readonly field: string) {}
-
+export class RequiredFieldValidation implements Validation {
   validate (value: string): boolean {
     return !!value
   }

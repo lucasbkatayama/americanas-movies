@@ -1,3 +1,3 @@
 export interface Validation {
-  validate: (fieldName: string, fieldValue: string) => boolean
+  validate: (value: string) => boolean
 }
